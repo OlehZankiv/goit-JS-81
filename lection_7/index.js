@@ -104,11 +104,24 @@
 // Функція створює об'єкт товару, додаючи йому унікальний ідентифікатор у властивість id
 // та викликає коллбек передаючи йому створений об'єкт.
 
+// const createProduct = (obj, callback) => {
+//   const newObj = {
+//     ...obj,
+//     id: Math.random(),
+//   };
+
+//   callback(newObj);
+// };
+
 // logProduct(product) - колббек приймаючий об'єкт продукту і логуючий його в консоль
 // logTotalPrice(product) - колббек, що приймає об'єкт продукту і логіює загальну вартість товару в консоль
 
-// createProduct({ name: '🍎', price: 30, quantity: 3 }, logProduct);
-// createProduct({ name: '🍋', price: 20, quantity: 5 }, logTotalPrice);
+// const logProduct = (product) => console.log(product);
+// const logTotalPrice = (product) =>
+//   console.log(product.price * product.quantity);
+
+// createProduct({ name: "🍎", price: 30, quantity: 3 }, logProduct);
+// createProduct({ name: "🍋", price: 20, quantity: 5 }, logTotalPrice);
 
 // =>
 // Example 2 - Коллбек функції
@@ -124,6 +137,32 @@
 
 // const TRANSACTION_LIMIT = 1000;
 
+// const account = {
+//   balance: 1000,
+
+//   withdraw(amount, onSuccess, onError) {
+//     if (amount <= 0) onError("Amount is less than zero");
+//     else if (amount > TRANSACTION_LIMIT) onError("Amount is more than limit");
+//     else if (amount > this.balance)
+//       onError(
+//         `Amount is more than balance. Because you're trying to receive $${amount} dollars and you have only $${this.balance}`
+//       );
+//     else {
+//       this.balance -= amount;
+//       onSuccess("Withdraw is Good! Balance: " + this.balance);
+//     }
+//   },
+
+//   deposit(amount, onSuccess, onError) {
+//     if (amount <= 0) onError("Amount is less than zero");
+//     else if (amount > TRANSACTION_LIMIT) onError("Amount is more than limit");
+//     else {
+//       this.balance += amount;
+//       onSuccess("Deposit is Good! Balance: " + this.balance);
+//     }
+//   },
+// };
+
 // function handleSuccess(message) {
 //   console.log(`✅ Success! ${message}`);
 // }
@@ -131,9 +170,18 @@
 //   console.log(`❌ Error! ${message}`);
 // }
 
+// account.withdraw(-1000, handleSuccess, handleError);
+// account.withdraw(1500, handleSuccess, handleError);
+// account.withdraw(500, handleSuccess, handleError);
+// account.withdraw(1000, handleSuccess, handleError);
+
+// account.deposit(10000, handleSuccess, handleError);
+// account.deposit(-10000, handleSuccess, handleError);
+// account.deposit(500, handleSuccess, handleError);
+
 // account.withdraw(2000, handleSuccess, handleError);
 // account.withdraw(600, handleSuccess, handleError);
-// account.withdraw(300, handleSuccess, handleError);
+// account.withdraw(1000, handleSuccess, handleError);
 // account.deposit(1700, handleSuccess, handleError);
 // account.deposit(0, handleSuccess, handleError);
 // account.deposit(-600, handleSuccess, handleError);
@@ -145,133 +193,133 @@
 // а другим - функцію, яка застосовується до кожного елемента масиву.
 // Функція each повинна повернути новий масив, елементами якого будуть результати виклику коллбека.
 
+// function each(arr, callback) {
+//   const result = [];
+
+//   for (let i = 0; i < arr.length; i += 1) {
+//     const res = callback(arr[i]);
+//     result.push(res);
+//   }
+
+//   //   arr.forEach(function (number) {
+//   //     const res = callback(number);
+//   //     result.push(res);
+//   //   });
+
+//   //   arr.forEach((number) => result.push(callback(number)));
+
+//   return result;
+// }
+
 // console.log(
-//   each([64, 49, 36, 25, 16], function (value) {
-//     return value * 2;
-//   }),
+//   each(
+//     each([64, 49, 36, 25, 16], (value) => (value + 2 - 4) / 3),
+//     (v) => Math.round(v)
+//   )
 // );
 // console.log(
 //   each([64, 49, 36, 25, 16], function (value) {
-//     return value - 10;
-//   }),
+//     return value - 10; // [54, 39, 26, 15, 6]
+//   })
 // );
 // console.log(
 //   each([64, 49, 36, 25, 16], function (value) {
 //     return Math.sqrt(value);
-//   }),
+//   })
 // );
 // console.log(
 //   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
 //     return Math.ceil(value);
-//   }),
+//   })
 // );
 // console.log(
 //   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
 //     return Math.floor(value);
-//   }),
+//   })
 // );
 
 // =>
 // Example 4 - Стрілочні функції
 // Виконайте рефакторинг коду за допомогою стрілочних функцій.
 
-// function createProduct(partialProduct, callback) {
+// const createProduct = (partialProduct, callback) => {
 //   const product = { id: Date.now(), ...partialProduct };
 //   callback(product);
-// }
+// };
 
-// function logProduct(product) {
-//   console.log(product);
-// }
+// const logProduct = (product) => console.log(product);
 
-// function logTotalPrice(product) {
+// const logTotalPrice = (product) =>
 //   console.log(product.price * product.quantity);
-// }
 
-// createProduct({ name: '🍎', price: 30, quantity: 3 }, logProduct);
-// createProduct({ name: '🍋', price: 20, quantity: 5 }, logTotalPrice);
+// createProduct({ name: "🍎", price: 30, quantity: 3 }, logProduct);
+// createProduct({ name: "🍋", price: 20, quantity: 5 }, logTotalPrice);
 
 // =>
-// Example 6 - Інлайн стрілочні функції
+// Example 5 - Інлайн стрілочні функції
 // Виконайте рефакторинг коду за допомогою стрілочних функцій.
 
-// function each(array, callback) {
+// const each = (array, callback) => {
 //   const newArr = [];
+
 //   for (const el of array) {
 //     newArr.push(callback(el));
 //   }
-//   return newArr;
-// }
 
-// console.log(
-//   each([64, 49, 36, 25, 16], function (value) {
-//     return value * 2;
-//   }),
-// );
-// console.log(
-//   each([64, 49, 36, 25, 16], function (value) {
-//     return value - 10;
-//   }),
-// );
-// console.log(
-//   each([64, 49, 36, 25, 16], function (value) {
-//     return Math.sqrt(value);
-//   }),
-// );
-// console.log(
-//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
-//     return Math.ceil(value);
-//   }),
-// );
-// console.log(
-//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
-//     return Math.floor(value);
-//   }),
-// );
+//   return newArr;
+// };
+
+// console.log(each([64, 49, 36, 25, 16], (value) => value * 2));
+// console.log(each([64, 49, 36, 25, 16], (value) => value - 10));
+// console.log(each([64, 49, 36, 25, 16], (value) => Math.sqrt(value)));
+// console.log(each([1.5, 2.1, 16.4, 9.7, 11.3], (value) => Math.ceil(value)));
+// console.log(each([1.5, 2.1, 16.4, 9.7, 11.3], (value) => Math.floor(value)));
+
+// =>
+// Example 6 - Метод forEach
+// Виконайте рефакторинг коду за допомогою методу forEach та стрілочні функції.
+
+// const logItems = (items = []) => {
+//   items.forEach((item, i) => {
+//     console.log(`${i + 1} - ${item}`);
+//   });
+// };
+
+// logItems(["Mango", "Poly", "Ajax"]);
+// logItems(["🍎", "🍇", "🍑", "🍌", "🍋"]);
 
 // =>
 // Example 7 - Метод forEach
 // Виконайте рефакторинг коду за допомогою методу forEach та стрілочні функції.
 
-// function logItems(items) {
-//   console.log(items);
-//   for (let i = 0; i < items.length; i += 1) {
-//     console.log(`${i + 1} - ${items[i]}`);
-//   }
+// function printContactsInfo({ names = "", phones = "" }) {
+//   const nameList = names.split(",");
+//   const phoneList = phones.split(",");
+
+//   nameList.forEach((item, i) => {
+//     console.log(`${item}: ${phoneList[i]}`);
+//   });
 // }
 
-// logItems(['Mango', 'Poly', 'Ajax']);
-// logItems(['🍎', '🍇', '🍑', '🍌', '🍋']);
+// printContactsInfo({
+//   names: "Jacob,William,Solomon,Artemis",
+//   phones: "89001234567,89001112233,890055566377,890055566300",
+// });
 
 // =>
 // Example 8 - Метод forEach
 // Виконайте рефакторинг коду за допомогою методу forEach та стрілочні функції.
 
-// function printContactsInfo({ names, phones }) {
-//   const nameList = names.split(',');
-//   const phoneList = phones.split(',');
-//   for (let i = 0; i < nameList.length; i += 1) {
-//     console.log(`${nameList[i]}: ${phoneList[i]}`);
-//   }
-// }
+// const calculateAverage = (...args) => {
+//   //   return args.reduce((total, current) => total + current, 0) / args.length;
 
-// printContactsInfo({
-//   names: 'Jacob,William,Solomon,Artemis',
-//   phones: '89001234567,89001112233,890055566377,890055566300',
-// });
-
-// =>
-// Example 9 - Метод forEach
-// Виконайте рефакторинг коду за допомогою методу forEach та стрілочні функції.
-
-// function calсulateAverage(...args) {
 //   let total = 0;
-//   for (let i = 0; i < args.length; i++) {
-//     total += args[i];
-//   }
-//   return total / args.length;
-// }
 
-// console.log(calсulateAverage(1, 2, 3, 4)); // 2.5
-// console.log(calсulateAverage(14, 8, 2)); // 8
-// console.log(calсulateAverage(27, 43, 2, 8, 36)); // 23.2
+//   args.forEach((item) => (total += item));
+
+//   return total / args.length;
+// };
+
+// console.log(calculateAverage(1, 2, 3, 4)); // 2.5
+// console.log(calculateAverage(14, 8, 2)); // 8
+// console.log(calculateAverage(27, 43, 2, 8, 36)); // 23.2
