@@ -1,7 +1,98 @@
 //
-// QUESTIONS ==>
 
-// <=== QUESTIONS
+// foo();
+// foo2();
+
+// function foo() {
+//   return "HELLO";
+// }
+
+// const foo2 = () => "HELLO";
+
+// console.log(foo());
+// console.log(foo2());
+
+// function callMe(callback) {
+//   if (false) {
+//     callback();
+//   }
+// }
+
+// callMe(function () {
+//   console.log("HELLO");
+// });
+// callMe(function () {
+//   console.log("232323HELLO");
+// });
+// callMe(function () {
+//   console.log("HEL123123LO");
+// });
+// callMe(function () {
+//   console.log("23123");
+// });
+
+// function validateValue(value, onSuccess, onError) {
+//   if (value !== null && value !== undefined && value !== "") {
+//     onSuccess("HELLO");
+//   } else {
+//     onError("GOOD BYE", value);
+//   }
+// }
+
+// validateValue(
+//   100,
+//   function () {
+//     console.log("Number is correct");
+//   },
+//   function () {
+//     console.log("Number is incorrect");
+//   }
+// );
+
+// validateValue(
+//   null,
+//   (message) => console.log(message, "Number is correct"),
+//   (message, second) => console.log(message, second, "Is incorrect")
+// );
+
+// validateValue(
+//   "",
+//   function () {
+//     console.log("String is correct");
+//   },
+//   function () {
+//     console.log("String is incorrect");
+//   }
+// );
+
+// const arr = [1, 2, 3];
+
+// for (let i = 0; i < arr.length; i++) {
+//   console.log(arr[i]);
+// }
+
+// console.log("______");
+
+// for (const number of arr) {
+//   console.log(number);
+// }
+
+// console.log("______");
+
+// arr.forEach((number) => console.log(number));
+
+// const customForEach = (array, callback) => {
+//   for (let i = 0; i < array.length; i += 1) {
+//     callback(array[i], i, array);
+//   }
+// };
+
+// const b = () => "HELLO";
+// const a = (callback) => {
+// };
+
+// a(b)
+// customForEach(arr, (number) => console.log(number, "HELLO"));
 
 //
 // Модуль 4. Заняття 7. Коллбеки. Стрілочні функції. forEach
@@ -99,50 +190,6 @@
 
 // createProduct({ name: '🍎', price: 30, quantity: 3 }, logProduct);
 // createProduct({ name: '🍋', price: 20, quantity: 5 }, logTotalPrice);
-// Example 5 - Стрілочні функції
-// Виконайте рефакторинг коду за допомогою стрілочних функцій.
-
-// const TRANSACTION_LIMIT = 1000;
-
-// const account = {
-//   username: 'Jacob',
-//   balance: 400,
-//   withdraw(amount, onSuccess, onError) {
-//     if (amount > TRANSACTION_LIMIT) {
-//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
-//     } else if (amount > this.balance) {
-//       onError(`Amount can't exceed account balance of ${this.balance} credits`);
-//     } else {
-//       this.balance -= amount;
-//       onSuccess(`Account balance: ${this.balance}`);
-//     }
-//   },
-//   deposit(amount, onSuccess, onError) {
-//     if (amount > TRANSACTION_LIMIT) {
-//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
-//     } else if (amount <= 0) {
-//       onError(`Amount must be more than 0 credits`);
-//     } else {
-//       this.balance += amount;
-//       onSuccess(`Account balance: ${this.balance}`);
-//     }
-//   },
-// };
-
-// function handleSuccess(message) {
-//   console.log(`✅ Success! ${message}`);
-// }
-// function handleError(message) {
-//   console.log(`❌ Error! ${message}`);
-// }
-
-// account.withdraw(2000, handleSuccess, handleError);
-// account.withdraw(600, handleSuccess, handleError);
-// account.withdraw(300, handleSuccess, handleError);
-// account.deposit(1700, handleSuccess, handleError);
-// account.deposit(0, handleSuccess, handleError);
-// account.deposit(-600, handleSuccess, handleError);
-// account.deposit(600, handleSuccess, handleError);
 
 // =>
 // Example 6 - Інлайн стрілочні функції
